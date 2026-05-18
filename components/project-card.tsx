@@ -13,7 +13,17 @@ const categoryStyles: Record<Project["category"], string> = {
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="panel group relative flex flex-col gap-4 p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]">
+    <article className="panel group relative flex flex-col gap-4 overflow-hidden transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]">
+      {/* BUG 2d — plain <img> with no width/height, no loading="lazy", no sizes.
+          All 8 cover images (800×450 px each) load immediately at full resolution,
+          blocking the main thread and tanking LCP. Fix: replace with next/image
+          and add picsum.photos to images.remotePatterns in next.config.js. */}
+      <img
+        src={project.coverImage}
+        alt={project.name}
+        className="h-40 w-full object-cover"
+      />
+      <div className="flex flex-col gap-4 p-5 pt-0">
       <header className="flex items-start gap-3">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-white/10 to-transparent text-2xl ring-1 ring-white/10">
           {project.emoji}
@@ -64,6 +74,7 @@ export function ProjectCard({ project }: { project: Project }) {
           {formatVotes(project.votes)}
         </button>
       </footer>
+      </div>
     </article>
   );
 }

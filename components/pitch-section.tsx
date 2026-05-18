@@ -4,7 +4,7 @@
 // During the workshop the instructor will:
 //   1. Open any reference screenshot they like (Stripe pricing, Linear
 //      feature page, a Dribbble shot — anything visually striking).
-//   2. Paste the image into the Antigravity agent and ask Gemini 3 Pro to
+//   2. Paste the image into the Antigravity IDE agent and ask Gemini 3 Pro to
 //      build the JSX/Tailwind that recreates the section here.
 //   3. The agent fills in this component and the landing page picks it up
 //      via the existing <PitchSection /> mount in app/page.tsx.
@@ -30,7 +30,7 @@ export function PitchSection() {
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm text-ink-300">
               This section is intentionally empty. During the demo we paste a
-              reference image into Antigravity and ask Gemini 3 Pro to
+              reference image into Antigravity IDE and ask Gemini 3 Pro to
               recreate the UI in-place.
             </p>
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-signal-violet/30 bg-signal-violet/10 px-3 py-1.5 text-xs font-semibold text-signal-violet">

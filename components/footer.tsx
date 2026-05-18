@@ -15,7 +15,7 @@ export function Footer() {
         <div className="flex items-center gap-5 font-mono text-[11px] uppercase tracking-wider">
           <span>v0.1</span>
           <span>© 2026</span>
-          <span className="text-signal-cyan">made with antigravity</span>
+          <span className="text-signal-cyan">made with antigravity ide</span>
         </div>
       </div>
     </footer>

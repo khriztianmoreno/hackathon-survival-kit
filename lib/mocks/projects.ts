@@ -14,6 +14,7 @@ export const projects: Project[] = [
     votes: 248,
     trending: true,
     techStack: ["Next.js", "Whisper", "Supabase"],
+    coverImage: "https://picsum.photos/seed/echo/800/450",
   },
   {
     id: "prj_02",
@@ -26,6 +27,7 @@ export const projects: Project[] = [
     votes: 187,
     trending: true,
     techStack: ["React", "Stable Diffusion", "Three.js"],
+    coverImage: "https://picsum.photos/seed/patchwork/800/450",
   },
   {
     id: "prj_03",
@@ -38,6 +40,7 @@ export const projects: Project[] = [
     votes: 156,
     trending: false,
     techStack: ["ESP32", "MQTT", "SvelteKit"],
+    coverImage: "https://picsum.photos/seed/pebble/800/450",
   },
   {
     id: "prj_04",
@@ -50,6 +53,7 @@ export const projects: Project[] = [
     votes: 142,
     trending: false,
     techStack: ["PixiJS", "Tone.js"],
+    coverImage: "https://picsum.photos/seed/rookie/800/450",
   },
   {
     id: "prj_05",
@@ -62,6 +66,7 @@ export const projects: Project[] = [
     votes: 119,
     trending: false,
     techStack: ["Astro", "D3", "IndexedDB"],
+    coverImage: "https://picsum.photos/seed/bramble/800/450",
   },
   {
     id: "prj_06",
@@ -74,6 +79,7 @@ export const projects: Project[] = [
     votes: 98,
     trending: false,
     techStack: ["Remotion", "Postgres"],
+    coverImage: "https://picsum.photos/seed/civic/800/450",
   },
   {
     id: "prj_07",
@@ -86,6 +92,7 @@ export const projects: Project[] = [
     votes: 84,
     trending: false,
     techStack: ["Hono", "SQLite", "HTMX"],
+    coverImage: "https://picsum.photos/seed/brewlog/800/450",
   },
   {
     id: "prj_08",
@@ -98,5 +105,6 @@ export const projects: Project[] = [
     votes: 71,
     trending: false,
     techStack: ["SvelteKit", "PostGIS"],
+    coverImage: "https://picsum.photos/seed/tidepool/800/450",
   },
 ];

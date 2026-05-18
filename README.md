@@ -1,242 +1,368 @@
-# Hackathon Survival Kit · DemoDay
+<div align="center">
 
-A tiny Next.js 14 project built as the live demo for the talk
-**"Kit de Supervivencia para Hackathons: construye veloz y desbloquea con IA"**.
+<img src="public/slides/logo.png" alt="Hackathon Survival Kit" width="100" />
 
-The app itself (DemoDay — a wall of weekend hackathon projects) is just the
-canvas. Each demo block of the talk targets a deliberate gap or rough spot
-in this codebase.
+# Hackathon Survival Kit
 
-> 🎯 Talk goal: in 50 minutes the audience should walk out knowing that
-> Antigravity + Chrome DevTools MCP + Agent Manager are not three tools,
-> they are three reflexes that fit in one hour of build time.
+**A live-coding workshop on AI agent orchestration, Chrome DevTools MCP, and rapid prototyping under pressure.**
+
+[🇪🇸 Leer en Español](README.es.md) · [📊 View Slides](https://hackathon-survival-kit.vercel.app/slides)
 
 ---
 
-## Quickstart
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat-square&logo=tailwind-css&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Supabase](https://img.shields.io/badge/Supabase-optional-3ECF8E?style=flat-square&logo=supabase&logoColor=white)
+![Workshop](https://img.shields.io/badge/format-live--workshop-F97316?style=flat-square)
+
+</div>
+
+---
+
+## What Is This?
+
+This repo is the **live demo canvas** for the talk _"Hackathon Survival Kit: build fast and unblock with AI"_. The app itself — DemoDay, a wall of weekend hackathon projects — is just the surface. Every component, bug, and stub is intentional.
+
+You'll see three AI agent reflexes that collapse hours of work into minutes:
+
+| Pillar | Reflex | Time |
+|--------|--------|------|
+| 1 · Visual Prototyping | Screenshot → JSX in seconds | 10 min |
+| 2 · Runtime Debugging | DevTools + MCP → fix 4 real bugs | 20 min |
+| 3 · Advanced Orchestration | Parallel agents + autonomous integration fix | 8 min |
+
+---
+
+## Prerequisites
+
+Install these **before** the workshop starts.
+
+| Tool | Version | Notes |
+|------|---------|-------|
+| [Node.js](https://nodejs.org) | 22+ | Required by Chrome DevTools MCP |
+| [pnpm](https://pnpm.io) | 9+ | `npm i -g pnpm` |
+| [Google Chrome](https://www.google.com/chrome/) | Latest | Required for DevTools demo |
+| [Antigravity IDE](https://antigravity.dev) | Latest | AI agent tool used in the demo |
+| [Claude Code](https://claude.ai/code) | Latest | Alternative AI agent (either works) |
+
+> **Supabase** is optional — only needed to follow along with Pillar 3 live. The app runs fully offline without it.
+
+---
+
+## Attendee Quick Start
 
 ```bash
+# 1. Clone the repo
+git clone https://github.com/khriztianmoreno/hackathon-survival-kit
+cd hackathon-survival-kit
+
+# 2. Install dependencies
 pnpm install
-pnpm dev      # http://localhost:3000
+
+# 3. Start the dev server
+pnpm dev
 ```
 
-That's it. No DB, no auth, no env vars required to run.
-The instructor can optionally fill `.env.example` for the Pillar 3a Supabase
-demo.
+Open **[http://localhost:3000](http://localhost:3000)** — you should see the DemoDay landing page.
+
+> No `.env` file needed. No database, no auth, no external services required to run the app.
+
+### Optional: Supabase (Pillar 3)
+
+```bash
+cp .env.example .env.local
+# Fill in NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY
+```
 
 ---
 
-## The three pillars (mapped to the code)
+## Verifying Chrome DevTools Integration
 
-### Pillar 1 · Prototipado visual ultrarrápido
+### Checklist
+
+- [ ] **Antigravity IDE is installed and running.** See [Antigravity Official Docs](https://antigravity.dev).
+- [ ] **Chrome DevTools MCP is connected to Antigravity IDE.** See [Chrome DevTools MCP Setup](https://github.com/ChromeDevTools/chrome-devtools-mcp).
+- [ ] **Repo is cloned and dependencies are installed** (`pnpm install`).
+- [ ] **App is running locally** on `http://localhost:3000` (`pnpm dev`).
+- [ ] **Google Chrome is open** and pointing to `http://localhost:3000`.
+
+### Quick Test (1 minute)
+
+In Antigravity IDE, send this prompt:
+
+> "Connect to `http://localhost:3000`, tell me what hackathon stats are shown on the page, and how many projects are listed in the grid."
+
+**Success:** the agent responds with actual numbers from your running app (e.g., 8 projects in the grid). If it says "I can't access the URL", the Chrome DevTools MCP is not properly configured.
+
+---
+
+## Workshop Structure
+
+### Pillar 1 · Ultra-fast Visual Prototyping
 
 > "Don't start from scratch. Paste a screenshot, get the JSX."
 
-**Target file:** [`components/pitch-section.tsx`](components/pitch-section.tsx)
+**Target:** `components/pitch-section.tsx` — an intentional empty stub
 
-The landing page renders a section called **"Drop a screenshot here. Watch
-it become code."** It is a deliberate empty placeholder. On stage:
+**Steps:**
+1. Find a visually striking reference (Stripe pricing, Linear feature page, anything)
+2. Screenshot it
+3. Paste into your AI agent and prompt:
+   > _"Recreate the section from the image inside `components/pitch-section.tsx` using Tailwind and the `signal-orange`, `signal-violet`, and `signal-cyan` colors defined in `tailwind.config.ts`. Keep the section `id` as `pitch`."_
+4. Refresh — the blank section fills in live
 
-1. Open any visually striking reference (Stripe pricing, Linear feature
-   page, a Dribbble shot, even a competitor landing).
-2. Screenshot it.
-3. Paste the screenshot into Antigravity and prompt Gemini 3 Pro:
-
-   > *"Recrea la sección de la imagen dentro de `components/pitch-section.tsx`,
-   > usando Tailwind y los colores `signal-orange`, `signal-violet` y `signal-cyan`
-   > definidos en `tailwind.config.ts`. Mantén el id del section como `pitch`."*
-
-4. Refresh the page — the hole fills in live.
-
-**Bonus** — show **Playgrounds**: spawn a second window with a wild idea
-("turn this into a 3D card grid with `react-three-fiber`") without
-touching the main repo. Mention it as the "safe sandbox while the main
-clock keeps running".
+**Bonus · Worktree 3D:** try this in a Playground (sandboxed from the main repo):
+```
+Create a worktree. Do NOT checkout, do NOT switch branches,
+do NOT commit to other branches. Only modify files in the current cwd.
+If you need to change context, stop and ask.
+Convert the current component into a 3D grid using react-three-fiber.
+```
 
 ---
 
-### Pillar 2 · Resolución instantánea de bloqueos
+### Pillar 2 · Real Runtime Debugging
 
-> "DevTools + MCP turn a 20-minute bug into a 20-second fix."
+> "The agent reads the runtime — it doesn't guess, it doesn't grep for typos."
 
-#### 2a · CSS bug: invisible status pill
-
-**Target file:** [`components/hero.tsx`](components/hero.tsx) — line with
-`bg-white px-3 py-1.5 text-xs font-semibold text-white`.
-
-The hero has a "12 teams shipping live" pill where text color matches the
-background → it looks like an empty white capsule.
-
-**Demo flow:**
-
-1. Open `http://localhost:3000`. Audience sees the broken pill at the top.
-2. Open Chrome DevTools, inspect the element. Show `color: rgb(255,255,255)`
-   on top of `background-color: rgb(255,255,255)`.
-3. In the inspector, edit `color` to something like `#080812` — text appears.
-4. Ask Antigravity:
-
-   > *"En `components/hero.tsx` el píldoro de status tiene texto blanco
-   > sobre fondo blanco. Aplica el cambio de color que probé en el
-   > inspector: el texto debe usar un tono oscuro (`text-ink-950`) para
-   > contrastar con el fondo blanco."*
-
-5. The agent reads the file, finds the conflicting Tailwind classes and
-   replaces `text-white` with `text-ink-950`.
-
-#### 2b · Network bug: login form posts to a typo'd route
-
-**Target files:**
-[`app/login/page.tsx`](app/login/page.tsx) — fetches `/api/lgoin`
-[`app/api/login/route.ts`](app/api/login/route.ts) — exists at `/api/login`
-
-**Demo flow:**
-
-1. Visit `/login`. Fill any email + password. Click *Sign in*.
-2. The UI shows: *"Server responded 404. Check the Network tab."*
-3. Open DevTools → Network → see `POST /api/lgoin` returning **404**.
-4. Ask Antigravity:
-
-   > *"El form de `/login` está dando 404 al enviar. Mira la pestaña de
-   > Network en Chrome y el árbol de rutas en `app/api/`, identifica el
-   > problema y arréglalo."*
-
-5. The agent finds the typo in `app/login/page.tsx` (`/api/lgoin` →
-   `/api/login`), patches it, and the login now responds 200.
+Four real bugs intentionally embedded in the code. Each one demonstrates a different DevTools signal.
 
 ---
 
-### Pillar 3 · Multiplicar las manos del equipo
+#### Bug 2a · CSS: invisible status pill
 
-> "Open the Agent Manager. Spawn parallel agents. One does the DB, another
-> writes the pitch, you keep coding."
+**File:** `components/hero.tsx` — white text on white background
 
-#### 3a · Database & backend: Supabase MCP
+**What's broken:** The live status pill in the Hero section is invisible — `text-white` on `bg-white`.
 
-**Target files:**
-- [`lib/mocks/projects.ts`](lib/mocks/projects.ts) — 8 hardcoded projects.
-- [`lib/types.ts`](lib/types.ts) — `Project` interface, the source of truth.
-- [`supabase/schema.sql`](supabase/schema.sql) — empty stub with detailed
-  instructions for the secondary agent.
-- [`app/api/projects/route.ts`](app/api/projects/route.ts) — currently
-  imports the mock; the parallel agent rewires it to Supabase.
+**Steps to reproduce:**
+1. Open `http://localhost:3000` — notice the empty white capsule in the hero
+2. Inspect it in Chrome DevTools → Elements → see `color: rgb(255,255,255)` on `background-color: rgb(255,255,255)`
+3. Change `color` to `#080812` in the inspector to confirm the fix visually
 
-**Demo flow:**
-
-1. Open the Agent Manager and create a new sub-agent. Give it this prompt:
-
-   > *"Lee `lib/mocks/projects.ts` y `lib/types.ts`. Usando el MCP de
-   > Supabase, crea una tabla `projects` con el mismo shape (incluye un enum
-   > para `category` y una columna `votes`). Llena `supabase/schema.sql`
-   > con el SQL de la migración. Después siembra la tabla con los 8
-   > registros del mock. Como último paso, actualiza
-   > `app/api/projects/route.ts` para que el GET lea de Supabase en vez del
-   > mock. Avisa cuando termines."*
-
-2. Move on with the rest of the talk. The agent works in background.
-3. Come back at the end, check the diff, redeploy.
-
-#### 3b · Marketing copy: parallel writer agent
-
-**Target file:** [`components/about-section.tsx`](components/about-section.tsx)
-— three paragraphs marked `[PLACEHOLDER PARAGRAPH]`.
-
-**Demo flow:** spawn another sub-agent in the Agent Manager with:
-
-> *"En `components/about-section.tsx` hay tres párrafos marcados como
-> placeholder. Reescríbelos como copy de marketing pulido para una
-> landing de showcase de hackathons. Tono: cercano, levemente irreverente,
-> pero serio sobre el oficio. 60-80 palabras por párrafo. No toques los
-> headings ni la estructura."*
-
-Show how both agents finish around the same time while the main session
-worked on Pillar 2 fixes. **That's the multiplication moment.**
+**Prompt for your agent:**
+```
+In components/hero.tsx the "live status pill" has white text on white background.
+DevTools shows color: rgb(255,255,255) on background-color: rgb(255,255,255).
+Change text-white to text-ink-950. Only modify that line.
+```
 
 ---
 
-## Talk timeline (50 min)
+#### Bug 2b · Network: login posts to a typo'd route
 
-| Min | Block | What happens |
-|-----|-------|--------------|
-| 0–4 | Intro · "El tiempo es el recurso más valioso" | Quick tour of DemoDay landing. Show the broken pill, mention "vamos a arreglarlo en vivo". |
-| 4–8 | Setup | `pnpm dev`, connect Antigravity + Chrome DevTools MCP, verify with a one-shot ping. |
-| 8–22 | **Pillar 1** · Build the missing section | Paste reference screenshot, watch Gemini 3 Pro fill in `pitch-section.tsx`. Mention Playgrounds. |
-| 22–34 | **Pillar 2** · Unblock 2 bugs in 12 min | Fix the CSS pill (2a), then fix the login 404 (2b) using DevTools as the diagnostic surface. |
-| 34–46 | **Pillar 3** · Delegate in parallel | Open Agent Manager. Spawn one agent on Supabase schema + seed, another on marketing copy. Show both diffs at the end. |
-| 46–50 | Cierre + Q&A | Recap: "tres reflejos, una hora de build". |
+**File:** `app/login/page.tsx` — fetches `/api/lgoin` (typo, should be `/api/login`)
 
----
+**What's broken:** Submitting the login form returns a 404.
 
-## Suggested prompts cheatsheet
+**Steps to reproduce:**
+1. Go to `/login`, fill any credentials, click Sign In
+2. Open DevTools → Network → filter by Fetch/XHR → see `POST /api/lgoin` returning **404**
+3. Note that `app/api/login/route.ts` exists — the route is fine, the caller has the typo
 
-**Pillar 1:**
-> *"Toma la imagen pegada arriba. Recreala dentro de
-> `components/pitch-section.tsx` con Tailwind. Usa los colores `signal-*`
-> del `tailwind.config.ts`. Conserva el `id="pitch"`."*
-
-**Pillar 2a:**
-> *"En `components/hero.tsx`, la 'live status pill' tiene fondo blanco y
-> texto blanco. Cambia el texto a un tono oscuro (`text-ink-950`) para
-> que sea legible."*
-
-**Pillar 2b:**
-> *"El form de `/login` da 404. Mira la pestaña Network, revisa la URL
-> del fetch en `app/login/page.tsx` y compárala con las rutas en
-> `app/api/`. Arregla el typo."*
-
-**Pillar 3a (sub-agent):**
-> *"Usando el Supabase MCP, crea la tabla `projects` con el shape de
-> `lib/types.ts`, seedeala con `lib/mocks/projects.ts`, escribe la
-> migración en `supabase/schema.sql` y reemplaza el handler GET de
-> `app/api/projects/route.ts` para que lea de Supabase."*
-
-**Pillar 3b (sub-agent):**
-> *"En `components/about-section.tsx`, reescribe los tres párrafos
-> placeholder como copy de marketing. Tono cercano, 60-80 palabras
-> cada uno. No toques los headings."*
+**Prompt for your agent:**
+```
+The login form at /login returns 404 on submit.
+I checked the Network tab in Chrome: the request goes to POST /api/lgoin.
+The route tree has app/api/login/route.ts — there's a typo.
+Open app/login/page.tsx, find the fetch with the wrong URL, fix it to /api/login.
+```
 
 ---
 
-## Folder layout
+#### Bug 2c · Runtime: infinite re-renders in the project grid
+
+**File:** `components/projects-filter-grid.tsx`
+
+**What's broken:** Clicking any category filter button (anything other than "all") causes an infinite re-render loop. The Console floods with `Warning: Maximum update depth exceeded` and the grid freezes.
+
+**Root cause:** `filteredProjects` is computed inline (no `useMemo`), so it produces a new array reference on every render. The `useEffect` depends on it, sees a "changed" dependency every cycle, calls `setDisplayProjects`, triggers a re-render, and loops forever.
+
+**Steps to reproduce:**
+1. Open `http://localhost:3000` — the grid loads fine with all projects
+2. Open DevTools → Console — confirm it's clean
+3. Click the **"ai"** filter button
+4. Watch the Console explode with `Maximum update depth exceeded`
+
+**Prompt for your agent:**
+```
+Connect to localhost:3000 using the Chrome DevTools MCP.
+Open the Console — you'll see "Maximum update depth exceeded" repeating.
+Analyze the ProjectsFilterGrid component in components/projects-filter-grid.tsx.
+The bug fires when clicking any category filter other than "all".
+Find why the useEffect creates an infinite re-render loop and fix it
+without changing the filtering logic or the UI.
+```
+
+**What the fix looks like:** wrap `filteredProjects` in `useMemo([initialProjects, activeCategory])` and remove the circular `useEffect`.
+
+---
+
+#### Bug 2d · Performance: unoptimized images tanking LCP
+
+**File:** `components/project-card.tsx`
+
+**What's broken:** All 8 project cover images (800×450 px, ~200 KB each) load immediately on page load using a plain `<img>` tag — no `loading="lazy"`, no `width`/`height`, no `sizes`. This blocks the main thread and tanks the Largest Contentful Paint score.
+
+**Steps to reproduce:**
+1. Open DevTools → Network → hard-reload `http://localhost:3000`
+2. Filter by Img — see 8 simultaneous image requests, all loading at full resolution (~1.6 MB total)
+3. Switch to Performance tab → record a page load → find the LCP marker deep in the timeline
+4. Optional: run Lighthouse on Desktop → see a low Performance score and LCP in red
+
+**Prompt for your agent:**
+```
+Review the Network and Performance tabs at localhost:3000 using the DevTools MCP.
+The project cards load 8 raw images (800×450 px, ~200 KB each) with no lazy loading.
+Optimize components/project-card.tsx by replacing the raw <img> with
+the next/image component using correct width, height, and sizes props.
+Also update next.config.js to allow the picsum.photos domain in images.remotePatterns.
+```
+
+**What the fix looks like:**
+- Replace `<img src={...}>` with `<Image>` from `next/image`
+- Add `width={800}`, `height={450}`, `sizes="(max-width: 768px) 100vw, 33vw"`
+- Add `picsum.photos` to `images.remotePatterns` in `next.config.js`
+
+---
+
+### Pillar 3 · Advanced Orchestration
+
+> "Not just parallelizing tasks — agents that fix broken integrations by reading the live runtime."
+
+**Pre-condition:** `/api/projects` is already returning a **500 Internal Server Error**. You can verify this by opening DevTools → Network and reloading `http://localhost:3000`. The project grid still renders (it falls back to the in-memory mock), but the real endpoint is broken.
+
+**Why it's broken:** After the Supabase migration, the Supabase JS client returns rows in PostgreSQL `snake_case` (`tech_stack`, `cover_image`, `is_trending`), but the route tries to access the camelCase keys that don't exist on those rows → `undefined.slice()` → TypeError → 500.
+
+You can see the error body at `http://localhost:3000/api/projects`:
+```json
+{
+  "error": "Cannot read properties of undefined (reading 'slice')",
+  "hint": "Supabase returns snake_case columns (tech_stack, cover_image, is_trending) but the route maps to camelCase keys that do not exist on the row."
+}
+```
+
+#### Agent A · Database migration + autonomous fix (Supabase MCP)
+
+Launch this as a sub-agent and **don't wait for it**:
+
+```
+Read lib/mocks/projects.ts and lib/types.ts to understand the shape.
+Using the Supabase MCP, create a projects table with snake_case columns
+(tech_stack, cover_image, is_trending, plus a category enum and votes).
+Write the migration SQL to supabase/schema.sql.
+Seed the table with the 8 mock records.
+Update app/api/projects/route.ts to read from Supabase.
+
+Once the endpoint is up, open the Chrome DevTools MCP and inspect
+the Network tab at localhost:3000.
+If /api/projects returns an error, read the response body, identify
+the mismatch between the column names Supabase returns (snake_case)
+and the ones the frontend expects (camelCase Project type),
+and fix the mapping in the API.
+Do not finish until /api/projects returns 200 with valid data.
+```
+
+**What Agent A does autonomously:**
+1. Creates the Supabase table and seeds it
+2. Updates `route.ts` to read from Supabase
+3. Opens the DevTools Network tab via MCP → sees the 500
+4. Reads the error: `"undefined.slice"` + hint about snake_case
+5. Traces the mismatch: `row.techStack` (undefined) should be `row.tech_stack`
+6. Fixes the column mapping → `/api/projects` returns 200 with real Supabase data
+
+#### Agent B · Marketing copy
+
+Launch this in parallel with Agent A:
+
+```
+In components/about-section.tsx there are three paragraphs marked [PLACEHOLDER PARAGRAPH].
+Rewrite them as polished marketing copy for a hackathon showcase landing page.
+Tone: approachable, slightly irreverent, but serious about the craft.
+60–80 words per paragraph. Don't touch headings or JSX structure.
+```
+
+**The multiplication moment:** Both agents finish around the same time. Agent A autonomously resolved an integration failure it wasn't explicitly told about. Agent B wrote the copy. You did neither — you orchestrated.
+
+---
+
+## Intentional Bugs — Reference Table
+
+All bugs are intentional. Here's the full map so you can reproduce them at home:
+
+| ID | File | What's broken | Signal in DevTools |
+|----|------|---------------|--------------------|
+| 2a | `components/hero.tsx:10` | `text-white` on `bg-white` — pill invisible | Elements → computed color |
+| 2b | `app/login/page.tsx:25` | `fetch('/api/lgoin')` — typo | Network → POST 404 |
+| 2c | `components/projects-filter-grid.tsx` | `useEffect` + inline array → infinite loop | Console → Maximum update depth |
+| 2d | `components/project-card.tsx` | `<img>` without lazy/sizes → 8×200 KB on load | Network → Img requests / Lighthouse LCP |
+| 3  | `app/api/projects/route.ts` | `row.techStack.slice()` on snake_case row → TypeError | Network → GET /api/projects 500 |
+
+---
+
+## Project Structure
 
 ```
 app/
-  page.tsx              # landing (Header + Hero + Grid + Pitch + About + Footer)
-  login/page.tsx        # ⚠️ Pillar 2b — fetches /api/lgoin (typo)
+  page.tsx                    # Landing (Header + Hero + Grid + Pitch + About + Footer)
+  login/page.tsx              # ⚠️  Bug 2b — fetches /api/lgoin (intentional typo)
   api/
-    login/route.ts      # the real login endpoint, returns 200
-    projects/route.ts   # ⚠️ Pillar 3a — rewire to Supabase during demo
-  layout.tsx
-  globals.css
+    login/route.ts            # Real login endpoint, returns 200
+    projects/route.ts         # ⚠️  Bug 3  — snake_case mismatch → 500
+  slides/page.tsx             # Full 21-slide interactive presentation
 components/
+  hero.tsx                    # ⚠️  Bug 2a — invisible status pill
+  pitch-section.tsx           # ⚠️  Pillar 1 — empty stub for screenshot demo
+  about-section.tsx           # ⚠️  Pillar 3b — placeholder copy for writer agent
+  project-card.tsx            # ⚠️  Bug 2d — raw <img> without lazy loading
+  projects-filter-grid.tsx    # ⚠️  Bug 2c — infinite re-renders on filter
+  projects-grid.tsx           # Server component — fetches projects, falls back to mock
   site-header.tsx
-  hero.tsx              # ⚠️ Pillar 2a — invisible status pill
-  projects-grid.tsx
-  project-card.tsx
-  pitch-section.tsx     # ⚠️ Pillar 1 — empty stub for the screenshot demo
-  about-section.tsx     # ⚠️ Pillar 3b — placeholder copy for parallel writer agent
   footer.tsx
 lib/
-  types.ts              # Project interface (canonical shape)
+  types.ts                    # Project interface (canonical camelCase shape)
+  mocks/projects.ts           # 8 hardcoded projects with coverImage URLs
   utils.ts
-  mocks/projects.ts     # ⚠️ Pillar 3a — migrate this into Supabase
 supabase/
-  schema.sql            # ⚠️ Pillar 3a — empty stub for the secondary agent
+  schema.sql                  # ⚠️  Pillar 3a — empty stub for the DB agent to fill
 public/
-  favicon.svg
+  slides/                     # Presentation assets
 ```
 
 ---
 
-## Instructor checklist (before going on stage)
+## Slides
 
-- [ ] `pnpm install` runs clean
-- [ ] `pnpm dev` boots on `:3000`, landing renders, broken pill is visible
-- [ ] `/login` form returns 404 on submit
-- [ ] Antigravity is connected with Gemini 3 Pro available
-- [ ] Chrome DevTools MCP is reachable (test ping: ask the agent to read
-      `localhost:3000` and report the page title)
-- [ ] Supabase MCP is connected and pointed at a throwaway project
-- [ ] You have at least 2 reference screenshots ready for Pillar 1 (in case
-      audience asks for a re-run)
-- [ ] Backup branch `talk-checkpoint` exists for fast rollback between
-      demos
+The full presentation lives at **`/slides`** — keyboard-navigable (arrow keys or space).
+
+**Online:** [https://hackathon-survival-kit.vercel.app/slides](https://hackathon-survival-kit.vercel.app/slides)
+**Local:** [http://localhost:3000/slides](http://localhost:3000/slides)
+
+---
+
+## About the Speaker
+
+<table>
+<tr>
+<td width="80">
+<img src="public/slides/image1.jpg" width="72" style="border-radius:50%" />
+</td>
+<td>
+
+**Cristian Moreno** · [@khriztianmoreno](https://github.com/khriztianmoreno)
+
+Tech Lead at [Honest](https://honest.net) · Google Developer Expert in Web Technologies
+
+[khriztianmoreno.dev](https://khriztianmoreno.dev) · [Twitter/X](https://twitter.com/khriztianmoreno)
+
+</td>
+</tr>
+</table>
+
+---
+
+## License
+
+MIT — fork it, give the talk, make it your own.

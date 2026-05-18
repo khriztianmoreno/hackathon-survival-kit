@@ -17,4 +17,5 @@ export interface Project {
   votes: number;
   trending: boolean;
   techStack: string[];
+  coverImage: string;
 }
