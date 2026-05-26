@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Rocket } from "lucide-react";
 import { ProjectCard } from "./project-card";
 import { cn } from "@/lib/utils";
@@ -28,15 +28,13 @@ export function ProjectsFilterGrid({
     [...initialProjects].sort((a, b) => b.votes - a.votes)
   );
 
-  // BUG 2c — filteredProjects is computed inline without useMemo.
-  // When activeCategory !== "all", .filter() returns a new array on every render.
-  // useEffect sees a new reference each cycle → calls setDisplayProjects on every
-  // render → React throws "Maximum update depth exceeded" as soon as the user
-  // clicks any category filter other than "all".
-  const filteredProjects =
-    activeCategory === "all"
+  // Fix: Memoize filteredProjects so that its reference is stable across renders
+  // unless initialProjects or activeCategory change.
+  const filteredProjects = useMemo(() => {
+    return activeCategory === "all"
       ? initialProjects
       : initialProjects.filter((p) => p.category === activeCategory);
+  }, [initialProjects, activeCategory]);
 
   useEffect(() => {
     setDisplayProjects([...filteredProjects].sort((a, b) => b.votes - a.votes));
