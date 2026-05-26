@@ -1,4 +1,5 @@
 import { ChevronUp, Flame, Users } from "lucide-react";
+import Image from "next/image";
 import { cn, formatVotes } from "@/lib/utils";
 import type { Project } from "@/lib/types";
 
@@ -18,9 +19,12 @@ export function ProjectCard({ project }: { project: Project }) {
           All 8 cover images (800×450 px each) load immediately at full resolution,
           blocking the main thread and tanking LCP. Fix: replace with next/image
           and add picsum.photos to images.remotePatterns in next.config.js. */}
-      <img
+      <Image
         src={project.coverImage}
         alt={project.name}
+        width={800}
+        height={450}
+        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
         className="h-40 w-full object-cover"
       />
       <div className="flex flex-col gap-4 p-5 pt-0">
