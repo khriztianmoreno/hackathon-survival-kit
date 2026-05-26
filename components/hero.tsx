@@ -7,7 +7,7 @@ export function Hero() {
       <div className="container-narrow relative">
         {/* Live status pill — BUG (Pillar 2a): text-white sits on a white pill
             so the label is invisible. Visible bug for the DevTools demo. */}
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-white shadow-lg shadow-white/10">
+        <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-ink-950 shadow-lg shadow-white/10">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal-lime opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-signal-lime" />
