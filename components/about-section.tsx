@@ -31,21 +31,30 @@ export function AboutSection() {
                 a secondary agent via the Agent Manager during the workshop).
                 Keep the three-paragraph rhythm but rewrite the content. */}
             <p>
-              [PLACEHOLDER PARAGRAPH] We started DemoDay because we got tired
-              of looking at the same five winning projects on every hackathon
-              recap. Most of the magic during a weekend happens in the teams
-              that finish 7th, 12th, 20th — they shipped, they learned, they
-              just didn't fit the leaderboard.
+              We started DemoDay because we got tired of looking at the same
+              five winning projects on every hackathon recap. Most of the magic
+              during a weekend happens in the trenches, with the teams that
+              finish 7th, 12th, or 20th. They didn't capture the judges'
+              fleeting attention, but they built real code, tackled complex
+              systems, and walked away with something functional. We believe those
+              efforts deserve a lasting spotlight.
             </p>
             <p>
-              [PLACEHOLDER PARAGRAPH] DemoDay collects every submission and
-              gives it a fair page: a tagline, an emoji, the team behind it
-              and a way to upvote without ranking it to death.
+              DemoDay gathers every single submission and gives it a clean,
+              beautiful page to shine. We show a clear tagline, a fun emoji,
+              and the real team of engineers and designers who stayed up late
+              writing code. Users can inspect your repository, view your
+              architecture, and cast their upvote based on execution, not hype.
+              It is a level playing field designed by builders, for builders,
+              with absolutely zero corporate fluff.
             </p>
             <p>
-              [PLACEHOLDER PARAGRAPH] Use it as inspiration, as a portfolio
-              wall, or as the first marketing surface for your weekend
-              project. We don't take a cut.
+              Use DemoDay to find inspiration, showcase your portfolio, or
+              launch your next side project. We don't take a cut, we don't lock
+              you into any proprietary ecosystems, and we certainly don't spam
+              your inbox. We just care about the craft of shipping clean software
+              under pressure. If you survived the weekend, you deserve a place on
+              this wall to show off what you did.
             </p>
           </div>
         </div>
