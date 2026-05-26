@@ -22,7 +22,7 @@ export default function LoginPage() {
       // BUG (Pillar 2b): the endpoint is misspelled. The real route lives at
       // /api/login. During the workshop the audience opens the DevTools
       // Network tab, sees a 404 on /api/lgoin and asks the agent to fix it.
-      const res = await fetch("/api/lgoin", {
+      const res = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
