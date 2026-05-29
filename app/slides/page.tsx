@@ -1240,9 +1240,126 @@ function WhyAntigravity() {
   );
 }
 
+function WelcomeQR() {
+  return (
+    <S center>
+      <div className="flex max-w-5xl flex-col items-center gap-8">
+        <Badge variant="orange">Conéctate al taller</Badge>
+        <h1 className="gradient-text text-5xl font-extrabold tracking-tight">
+          Escanea para Empezar
+        </h1>
+        <p className="max-w-2xl text-center text-lg text-ink-200">
+          Sigue la presentación de forma interactiva en tu dispositivo y clona el código fuente para seguir la demostración en vivo.
+        </p>
+
+        <div className="mt-6 grid w-full grid-cols-2 gap-12">
+          {/* QR Diapositivas */}
+          <div className="flex flex-col items-center gap-4">
+            <Badge variant="cyan">1. Presentación Interactiva</Badge>
+            <div className="relative overflow-hidden rounded-2xl border-4 border-signal-cyan/50 bg-white p-6 shadow-[0_0_50px_-12px_rgba(34,211,238,0.4)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/slides/qr-code-slides.png"
+                alt="QR Slides"
+                className="h-60 w-60"
+              />
+            </div>
+            <p className="font-mono text-xs font-bold text-signal-cyan">
+              hackathon-survival-kit.vercel.app/slides
+            </p>
+          </div>
+
+          {/* QR Repositorio */}
+          <div className="flex flex-col items-center gap-4">
+            <Badge variant="violet">2. Repositorio de GitHub</Badge>
+            <div className="relative overflow-hidden rounded-2xl border-4 border-signal-violet/50 bg-white p-6 shadow-[0_0_50px_-12px_rgba(168,85,247,0.4)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/slides/qr-code.png"
+                alt="QR GitHub"
+                className="h-60 w-60"
+              />
+            </div>
+            <p className="font-mono text-xs font-bold text-signal-violet">
+              github.com/khriztianmoreno/hackathon-survival-kit
+            </p>
+          </div>
+        </div>
+      </div>
+    </S>
+  );
+}
+
+function DownloadKit() {
+  return (
+    <S>
+      <div className="grid grid-cols-[1fr_360px] items-center gap-16">
+        {/* ── Instrucciones ── */}
+        <div className="flex flex-col gap-7">
+          <Badge variant="cyan">Manos a la obra</Badge>
+
+          <div>
+            <h1 className="text-[56px] font-extrabold leading-none text-white">
+              Clona el Proyecto
+            </h1>
+            <p className="mt-3 text-xl text-ink-200">
+              Escanea el código QR o ingresa al link para descargar el kit de supervivencia.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <div className="rounded-xl border-2 border-ink-600 bg-ink-800 p-5 font-mono text-sm">
+              <div className="flex items-center gap-2 text-signal-orange">
+                <Terminal className="h-4 w-4" />
+                <span className="font-bold uppercase tracking-wider">Pasos para iniciar:</span>
+              </div>
+              <div className="mt-3 flex flex-col gap-2 text-ink-100">
+                <div>
+                  <span className="text-ink-400"># 1. Clona el repositorio</span>
+                  <p className="text-white">git clone https://github.com/khriztianmoreno/hackathon-survival-kit.git</p>
+                </div>
+                <div className="mt-2">
+                  <span className="text-ink-400"># 2. Instala las dependencias</span>
+                  <p className="text-white">pnpm install</p>
+                </div>
+                <div className="mt-2">
+                  <span className="text-ink-400"># 3. Levanta el servidor local</span>
+                  <p className="text-white">pnpm dev</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <Badge variant="orange">GitHub Repo</Badge>
+            <Badge variant="violet">React & Next.js</Badge>
+            <Badge variant="default">Supabase</Badge>
+          </div>
+        </div>
+
+        {/* ── Código QR ── */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative overflow-hidden rounded-2xl border-4 border-signal-cyan/50 bg-white p-6 shadow-[0_0_50px_-12px_rgba(34,211,238,0.4)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/slides/qr-code.png"
+              alt="QR Code github.com/khriztianmoreno/hackathon-survival-kit"
+              className="h-72 w-72"
+            />
+          </div>
+          <div className="flex flex-col items-center gap-1 rounded-2xl border-2 border-ink-600 bg-ink-800 px-6 py-3 w-full">
+            <p className="font-mono text-xs font-bold text-signal-cyan">github.com/khriztianmoreno/hackathon-survival-kit</p>
+          </div>
+        </div>
+      </div>
+    </S>
+  );
+}
+
 // ─── Registry ──────────────────────────────────────────────────────────────
 
 const SLIDES = [
+  WelcomeQR,
   Cover,
   AboutMe,
   TheAgentsAreBound,
@@ -1252,6 +1369,7 @@ const SLIDES = [
   WhyAntigravity,
   ComparisonTable,
   ThreeReflexes,
+  DownloadKit,
   Pillar1Intro,
   Pillar1Demo,
   Pillar2Intro,
