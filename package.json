@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@khriztianmoreno/speaker-kit": "link:../speaker-kit",
+    "@khriztianmoreno/speaker-kit": "^1.1.0",
     "@supabase/supabase-js": "^2.107.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.454.0",
