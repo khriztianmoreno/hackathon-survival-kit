@@ -1,5 +1,6 @@
 "use client";
 
+import type { SlideEntry } from "@khriztianmoreno/speaker-kit";
 import { useEffect, useState } from "react";
 import {
   Bug,
@@ -1329,12 +1330,6 @@ function DownloadKit() {
 }
 
 // ─── Registry ──────────────────────────────────────────────────────────────
-
-export type SlideEntry = {
-  id: string;
-  Component: React.FC;
-  title: string;
-};
 
 export const SLIDES: SlideEntry[] = [
   { id: "welcome-qr", Component: WelcomeQR, title: "Welcome / QR" },
