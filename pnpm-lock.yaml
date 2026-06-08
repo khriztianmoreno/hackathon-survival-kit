@@ -4,10 +4,16 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@khriztianmoreno/speaker-kit': link:../speaker-kit
+
 importers:
 
   .:
     dependencies:
+      '@khriztianmoreno/speaker-kit':
+        specifier: link:../speaker-kit
+        version: link:../speaker-kit
       '@supabase/supabase-js':
         specifier: ^2.106.0
         version: 2.106.0
